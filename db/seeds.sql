@@ -4,6 +4,12 @@ VALUES
 ('Finance'),
 ('Marketing');
 
+INSERT INTO manager (first_name, last_name)
+VALUES 
+('Krista', 'Francis'),
+('Franklin', 'Francis'),
+('Kasey', 'Hill');
+
 INSERT INTO roles (title, salary, department_id)
 VALUES 
 ('Director of Operations', 175000, 1),
@@ -26,13 +32,13 @@ VALUES
 ('Krista', 'Francis', 1, null, 1),
 ('Jackson', 'Salgado', 2, 1, 0),
 ('Beth', 'Thompson', 3, 1, 0),
-('Stephanie', 'Spangler', 4, 5, 0),
+('Stephanie', 'Spangler', 4, 2, 0),
 ('Franklin', 'Francis', 5, null, 1),
-('Carolynn', 'Ray', 6, 5, 0),
-('Lisa', 'Browne', 7, 5, 0),
-('Steve', 'Kennedy', 8, 5, 0),
-('Felipe', 'Tellez', 9, 5, 0),
+('Carolynn', 'Ray', 6, 2, 0),
+('Lisa', 'Browne', 7, 2, 0),
+('Steve', 'Kennedy', 8, 2, 0),
+('Felipe', 'Tellez', 9, 2, 0),
 ('Kasey', 'Hill', 10, null, 1),
-('Gelene', 'Tracy', 11, 10, 0),
-('Roger', 'Kincaid', 12, 10, 0),
-('Regina', 'Heustress', 13, 10, 0);
+('Gelene', 'Tracy', 11, 3, 0),
+('Roger', 'Kincaid', 12, 3, 0),
+('Regina', 'Heustress', 13, 3, 0);
