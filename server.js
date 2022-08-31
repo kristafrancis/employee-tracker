@@ -1,15 +1,27 @@
-const cTable = require("console.table");
 const inquirer = require("inquirer");
+const cTable = require("console.table");
 const db = require ("./db");
+const mysql = require("mysql2");
 
+// Connect to database
+const connection = mysql.createConnection({
+    host: 'localhost',
+    // Your MySQL username,
+    user: 'root',
+    // Your MySQL password 
+    password: 'root',
+    database: 'employees',
+    port: 3306
+  });
 
-   console.log("Connected to employee database");
-    viewPrompt();
-  
+connection.connect(function(err){
+    if(err) throw err;
+    startApp();
+  });
 
-function viewPrompt () {
+startApp = () => {
 
-    return inquirer.prompt([
+    inquirer.prompt([
         {
             name: 'choices',
             type: 'list',
@@ -17,8 +29,8 @@ function viewPrompt () {
             choices: ['View all departments', 'View all roles', 'View all employees', 'Add a department', 'Add a role', 'Add an employee', 'Update employees role', 'All Done']
         }
     ]).then(res => {
-        let choice = res.choice;
-        switch (choice) {
+        let choices = res.choices;
+        switch (choices) {
             case 'View all departments':
                 viewAllDepartments();    
                 break;
@@ -37,7 +49,7 @@ function viewPrompt () {
             case 'Add an employee':
                 addAnEmployee();
             break;
-            case 'Update employees role':
+            case 'Update employee role':
                 updateEmployeeRole();
             break;
             case 'All Done':
