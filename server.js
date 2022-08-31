@@ -65,7 +65,7 @@ startApp = () => {
 viewAllDepartments = () => {
     connection.query(`SELECT * FROM department ORDER BY department_id;`, 
     function(err, results) {
-        console.table('results');
+        console.table(results);
         startApp();
     })
 };
@@ -73,7 +73,7 @@ viewAllDepartments = () => {
 viewAllRoles = () => {
     connection.query(`SELECT role.role_id, role.title, role.salary, department.department_name, department.department_id FROM role JOIN department ON role.department_id = department.department_id ORDER BY role.role_id;`,
      function(err, results) {
-        console.table('results');
+        console.table(results);
         startApp();
     })
 };
@@ -81,7 +81,7 @@ viewAllRoles = () => {
 viewAllEmployees = () => {
     connection.query(`SELECT employee.employee_id, employee.first_name, employee.last_name, role.title, department.department_name, role.salary, CONCAT(m.first_name, ' ', m.last_name) manager FROM employee m RIGHT JOIN employee e ON e.manager_id = m.employee_id JOIN role ON e.role_id = role.role_id JOIN department ON department.department_id = role.department_id ORDER BY e.employee_id ASC;`,
      function(err, results) {
-        console.table('results');
+        console.table(results);
         startApp();
     })
 };
