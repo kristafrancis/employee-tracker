@@ -1,7 +1,7 @@
 DROP TABLE IF EXISTS employees;
-DROP TABLE IF EXISTS roles;
-DROP TABLE IF EXISTS departments;
-DROP TABLE IF EXISTS manager;
+CREATE DATABASE employees;
+
+USE employees;
 
 CREATE TABLE manager (
     id INTEGER AUTO_INCREMENT PRIMARY KEY,

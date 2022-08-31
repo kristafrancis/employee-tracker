@@ -1,3 +1,5 @@
+USE employees;
+
 INSERT INTO departments (name)
 VALUES 
 ('Operations Management'),
