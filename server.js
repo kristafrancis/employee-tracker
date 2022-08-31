@@ -63,24 +63,27 @@ startApp = () => {
 }
 
 viewAllDepartments = () => {
-    connection.query(`SELECT * FROM department ORDER BY department_id;`, 
+    connection.query(`SELECT * FROM departments;`, 
     function(err, results) {
+        console.log(results);
         console.table(results);
         startApp();
     })
 };
 
 viewAllRoles = () => {
-    connection.query(`SELECT role.role_id, role.title, role.salary, department.department_name, department.department_id FROM role JOIN department ON role.department_id = department.department_id ORDER BY role.role_id;`,
+    connection.query(`SELECT * FROM roles;`,
      function(err, results) {
+        console.log(results);
         console.table(results);
         startApp();
     })
 };
 
 viewAllEmployees = () => {
-    connection.query(`SELECT employee.employee_id, employee.first_name, employee.last_name, role.title, department.department_name, role.salary, CONCAT(m.first_name, ' ', m.last_name) manager FROM employee m RIGHT JOIN employee e ON e.manager_id = m.employee_id JOIN role ON e.role_id = role.role_id JOIN department ON department.department_id = role.department_id ORDER BY e.employee_id ASC;`,
+    connection.query(`SELECT * FROM employees;`,
      function(err, results) {
+        console.log(results);
         console.table(results);
         startApp();
     })
@@ -97,7 +100,7 @@ addADepartment = () => {
     ]).then((response) => {
         connection.query(`INSERT INTO department SET ?`, 
         {
-            department_name: response.newDept,
+            departments_name: response.newDept,
         },
         (err, res) => {
             if (err) throw err;
@@ -108,9 +111,9 @@ addADepartment = () => {
 };
 
 addARole = () => {
-    connection.query(`SELECT * FROM department;`, (err, res) => {
+    connection.query(`SELECT * FROM departments;`, (err, res) => {
         if (err) throw err;
-        let departments = res.map(department => ({name: department.department_name, value: department.department_id }));
+        let departments = res.map(departments => ({name: departments.departments_name, value: departments.departments_id }));
         inquirer.prompt([
             {
             name: 'title',
@@ -125,7 +128,7 @@ addARole = () => {
             {
             name: 'departmentName',
             type: 'list',
-            message: 'Which department do you want to add the new role to?',
+            message: 'Which department would you like to add the new role to?',
             choices: departments
             },
         ]).then((response) => {
@@ -133,7 +136,7 @@ addARole = () => {
             {
                 title: response.title,
                 salary: response.salary,
-                department_id: response.deptName,
+                departments_id: response.deptName,
             },
             (err, res) => {
                 if (err) throw err;
@@ -210,13 +213,13 @@ updateEmployeeRole = () => {
                 {
                     name: 'employee',
                     type: 'list',
-                    message: 'Which employee would you like to update the role for?',
+                    message: 'Which employees role would you like to update?',
                     choices: employees
                 },
                 {
                     name: 'newRole',
                     type: 'list',
-                    message: 'What should the employees new role be?',
+                    message: 'What is the employees new role?',
                     choices: roles
                 },
             ]).then((response) => {
@@ -231,7 +234,7 @@ updateEmployeeRole = () => {
                 ], 
                 (err, res) => {
                     if (err) throw err;
-                    console.log(`Successfully updated employees role in the database!`);
+                    console.log(`Employees role in the database!`);
                     startApp();
                 })
             })
