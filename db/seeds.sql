@@ -1,6 +1,6 @@
 USE employees;
 
-INSERT INTO departments (departments_name)
+INSERT INTO department (department_name)
 VALUES 
 ('Operations Management'),
 ('Finance'),
@@ -23,7 +23,7 @@ VALUES
 ('Assistant Digital Marketing Specialist', 60000, 3);
 
 
-INSERT INTO employees (first_name, last_name, role_id, manager_id)
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
 VALUES 
 ('Krista', 'Francis', 1, null, 1),
 ('Jackson', 'Salgado', 2, 1, 0),
