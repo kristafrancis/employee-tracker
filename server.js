@@ -23,7 +23,7 @@ var employees = function () {
             db.query(`SELECT * FROM department`, (err, result) => {
                 if (err) throw err;
                 console.log("Viewing All Departments: ");
-                console.table(department);
+                console.table(result);
                 employees();
             });
         } else if (answers.prompt === 'View All Roles') {
